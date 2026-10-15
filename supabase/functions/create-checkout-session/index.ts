@@ -136,7 +136,7 @@ Deno.serve(async (req: Request) => {
       if (unitAmountCents !== LEAD_PRICE_CENTS) {
         console.warn(`[checkout] lead ${l.id} con prezzo ${unitAmountCents} diverso da LEAD_PRICE_CENTS ${LEAD_PRICE_CENTS}`)
       }
-      name = `Contatto Mappa dell'Igiene · ${l.category} · ${l.zone}`
+      name = `Contatto Nitido · ${l.category} · ${l.zone}`
       description = `Dati del locale e della segnalazione. Massimo ${l.max_buyers} ditte per contatto, stesso prezzo per tutte.`
       metadata.leadId = l.id
       metadata.companyId = company.id

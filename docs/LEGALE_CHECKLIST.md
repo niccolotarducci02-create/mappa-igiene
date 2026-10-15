@@ -1,4 +1,4 @@
-# Mappa dell'Igiene — checklist per la revisione legale
+# Nitido — checklist per la revisione legale
 
 Documento di lavoro per l'avvocato che deve dare l'**ok legale del Gate 1** (il piano prevede: nessun lancio
 pubblico senza parere legale e 5 ditte firmate). Per ogni tema: cosa va verificato, quale rischio copre e
@@ -112,7 +112,7 @@ si applicano **per legge** e quali il team adempie **volontariamente** (il piano
 
 ## 6. Altri punti
 
-- **Marchio** "Mappa dell'Igiene": deposito e verifica di anteriorità; dominio.
+- **Marchio** "Nitido": deposito e verifica di anteriorità; dominio.
 - **Comunicati NAS / ASL**: diritto di riutilizzo dei testi pubblici (d.lgs. 36/2006 e licenze dei siti
   istituzionali), citazione della fonte (`nas_notices.source_url`).
 - **Mappe**: attribuzione OpenStreetMap (ODbL) obbligatoria nella mappa (verificare che compaia in `MapPage`).

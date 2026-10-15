@@ -21,7 +21,7 @@
  * (sent_via contiene 'dry_run:sms' / 'dry_run:email'), così tutto funziona anche in locale e nella beta.
  *
  * Variabili: TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM (numero E.164 o Messaging Service SID "MG..."),
- *            RESEND_API_KEY, RESEND_FROM (es. "Mappa dell'Igiene <avvisi@mappadelligiene.it>"), APP_BASE_URL,
+ *            RESEND_API_KEY, RESEND_FROM (es. "Nitido <avvisi@nitido.example>"), APP_BASE_URL,
  *            NOTIFY_SMS_KINDS (lista separata da virgola; 'none' per disattivare gli SMS).
  */
 import { handleError, handleOptions, isUuid, json, readJson } from '../_shared/cors.ts'
@@ -125,14 +125,14 @@ async function sendSms(to: string, text: string): Promise<'sent' | 'dry_run'> {
 
 async function sendEmail(to: string, subject: string, text: string, link: string): Promise<'sent' | 'dry_run'> {
   const key = optionalEnv('RESEND_API_KEY')
-  const from = optionalEnv('RESEND_FROM') ?? "Mappa dell'Igiene <onboarding@resend.dev>"
+  const from = optionalEnv('RESEND_FROM') ?? "Nitido <onboarding@resend.dev>"
   if (!key) {
     console.log(`[notify] DRY-RUN email a ${to}: ${subject}`)
     return 'dry_run'
   }
   const html = `<p>${escapeHtml(text).replace(/\n/g, '<br>')}</p>
-<p><a href="${escapeHtml(link)}">Apri Mappa dell'Igiene</a></p>
-<p style="color:#666;font-size:12px">Ricevi questa email perché hai un account su Mappa dell'Igiene. Le notifiche si gestiscono dal profilo nell'app.</p>`
+<p><a href="${escapeHtml(link)}">Apri Nitido</a></p>
+<p style="color:#666;font-size:12px">Ricevi questa email perché hai un account su Nitido. Le notifiche si gestiscono dal profilo nell'app.</p>`
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
@@ -178,7 +178,7 @@ async function deliver(admin: AdminClient, n: NotificationRow, smsAllowed: Set<s
   }
   if (smsWanted && to.phone) {
     const phone = to.phone.startsWith('+') ? to.phone : `+${to.phone}`
-    const text = `Mappa dell'Igiene — ${n.title}. ${n.body}`.slice(0, SMS_MAX_CHARS - link.length - 2) + ` ${link}`
+    const text = `Nitido — ${n.title}. ${n.body}`.slice(0, SMS_MAX_CHARS - link.length - 2) + ` ${link}`
     try {
       via.push(`${await sendSms(phone, text) === 'sent' ? '' : 'dry_run:'}sms`)
     } catch (e) {
@@ -187,7 +187,7 @@ async function deliver(admin: AdminClient, n: NotificationRow, smsAllowed: Set<s
   }
   if (to.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to.email)) {
     try {
-      via.push(`${await sendEmail(to.email, `Mappa dell'Igiene — ${n.title}`, n.body, link) === 'sent' ? '' : 'dry_run:'}email`)
+      via.push(`${await sendEmail(to.email, `Nitido — ${n.title}`, n.body, link) === 'sent' ? '' : 'dry_run:'}email`)
     } catch (e) {
       errors.push(e instanceof Error ? e.message : String(e))
     }

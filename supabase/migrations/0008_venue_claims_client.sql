@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Mappa dell'Igiene — 0008_venue_claims_client.sql
+-- Nitido — 0008_venue_claims_client.sql
 -- Il client legge la coda delle rivendicazioni direttamente da venue_claims
 -- (DataStore.listVenueClaims: la moderazione le vede tutte, un utente solo le proprie).
 -- La policy di SELECT esiste già in 0003 (venue_claims_select_own); qui, nello stile di 0002_policies.sql:

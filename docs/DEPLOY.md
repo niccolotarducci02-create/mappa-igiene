@@ -1,4 +1,4 @@
-# Mappa dell'Igiene — guida alla messa in produzione
+# Nitido — guida alla messa in produzione
 
 Questa guida è scritta per il fondatore (non sviluppatore) con l'aiuto di un amico sviluppatore.
 I passi marcati **[sviluppatore]** richiedono il terminale; gli altri si fanno dal browser.
@@ -34,7 +34,7 @@ Indice
 | Account Twilio (o MessageBird) | twilio.com | per gli SMS dell'OTP e degli avvisi |
 | Account Resend | resend.com | email degli avvisi (gratis fino a 3.000/mese), serve un dominio |
 | Account Vercel o Netlify | vercel.com / netlify.com | hosting della PWA, piano gratuito |
-| Dominio | es. mappadelligiene.it | registrar a scelta (~10 €/anno) |
+| Dominio | es. nitido.example | registrar a scelta (~10 €/anno) |
 | Repository git del progetto | GitHub | Vercel/Netlify pubblicano da lì |
 | **[sviluppatore]** Node 22, `npm`, Supabase CLI | `npm i -g supabase` oppure `brew install supabase/tap/supabase` | |
 
@@ -97,7 +97,7 @@ L'app non usa password: l'utente riceve un codice via SMS (regola 2: utente veri
      transazionale; Twilio potrebbe chiedere la verifica dell'azienda). In Supabase inserisci `Account SID`,
      `Auth Token`, `Message Service SID`.
    - **MessageBird**: alternativa europea (Paesi Bassi), prezzi simili, inserisci `Access Key` e `Originator`.
-3. Template del messaggio: `Il tuo codice Mappa dell'Igiene è {{ .Code }}` (massimo ~70 caratteri per stare
+3. Template del messaggio: `Il tuo codice Nitido è {{ .Code }}` (massimo ~70 caratteri per stare
    in un solo SMS).
 4. **Rate limits** (Authentication → Rate Limits): SMS per ora = 30 all'inizio; alza con la crescita.
    Protegge dal "SMS pumping" (truffa che svuota il credito con richieste di OTP verso numeri a tariffa speciale).
@@ -105,7 +105,7 @@ L'app non usa password: l'utente riceve un codice via SMS (regola 2: utente veri
 5. **Numeri di prova** (Authentication → Providers → Phone → Test OTPs): aggiungi il tuo numero con un codice
    fisso, così i test non costano SMS.
 6. In **Authentication → URL Configuration** imposta `Site URL` = l'indirizzo pubblico della PWA
-   (es. `https://mappadelligiene.it`) e aggiungi anche `http://localhost:5173` ai redirect per lo sviluppo.
+   (es. `https://nitido.example`) e aggiungi anche `http://localhost:5173` ai redirect per lo sviluppo.
 
 Costi: un SMS verso un numero italiano costa circa **0,07–0,08 €** (Twilio) IVA esclusa; un utente nuovo
 costa 1 SMS di OTP; un utente che torna ogni mese costa ~1 SMS/mese (la sessione resta valida per settimane).
@@ -131,8 +131,8 @@ supabase secrets set \
   TWILIO_AUTH_TOKEN=... \
   TWILIO_FROM=MG...  \
   RESEND_API_KEY=re_... \
-  "RESEND_FROM=Mappa dell'Igiene <avvisi@mappadelligiene.it>" \
-  APP_BASE_URL=https://mappadelligiene.it \
+  "RESEND_FROM=Nitido <avvisi@nitido.example>" \
+  APP_BASE_URL=https://nitido.example \
   WEBHOOK_SECRET=$(openssl rand -hex 24) \
   CRON_SECRET=$(openssl rand -hex 24)
 ```
@@ -288,7 +288,7 @@ equivalente ma riservato a chi gestisce il progetto.
    - `VITE_SUPABASE_URL` = `https://<PROJECT_REF>.supabase.co`
    - `VITE_SUPABASE_ANON_KEY` = chiave anon/publishable
 4. Deploy. L'app usa `HashRouter` (`/#/locale/...`): non servono regole di rewrite.
-5. **Settings → Domains**: aggiungi `mappadelligiene.it` e `www`. Vercel mostra i record DNS (A `76.76.21.21`
+5. **Settings → Domains**: aggiungi `nitido.example` e `www`. Vercel mostra i record DNS (A `76.76.21.21`
    e CNAME `cname.vercel-dns.com`) da inserire nel pannello del registrar. HTTPS è automatico.
 
 ### Netlify
@@ -311,7 +311,7 @@ una modifica richiede entrambe.
 L'app è una PWA: si installa dal browser, senza App Store / Play Store (che arriveranno con Capacitor).
 
 **iPhone / iPad (Safari, obbligatorio: Chrome su iOS non installa PWA)**
-1. Apri `https://mappadelligiene.it` in Safari.
+1. Apri `https://nitido.example` in Safari.
 2. Tocca **Condividi** (quadrato con la freccia) → **Aggiungi alla schermata Home** → **Aggiungi**.
 3. L'icona compare come un'app. La fotocamera e il GPS chiedono il permesso al primo uso.
 

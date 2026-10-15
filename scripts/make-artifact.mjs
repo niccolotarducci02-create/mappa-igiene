@@ -20,7 +20,7 @@ cpSync(join(dist, 'assets'), join(out, 'assets'), { recursive: true })
 if (existsSync(join(dist, 'icon.svg'))) cpSync(join(dist, 'icon.svg'), join(out, 'icon.svg'))
 
 let html = readFileSync(join(dist, 'index.html'), 'utf8')
-const title = /<title>([\s\S]*?)<\/title>/.exec(html)?.[1] ?? "Mappa dell'Igiene"
+const title = /<title>([\s\S]*?)<\/title>/.exec(html)?.[1] ?? "Nitido"
 const fontLinks = [...html.matchAll(/<link[^>]+fonts\.googleapis\.com[^>]*>/g)].map((m) => m[0])
 const cssFiles = [...html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="\.\/(assets\/[^"]+\.css)"[^>]*>/g)].map((m) => m[1])
 const jsFiles = [...html.matchAll(/<script[^>]+type="module"[^>]+src="\.\/(assets\/[^"]+\.js)"[^>]*><\/script>/g)].map((m) => m[1])

@@ -1,7 +1,7 @@
 /** Testi condivisi: navigazione, stati, categorie, motivi delle regole. */
 export const core = {
   it: {
-    'app.name': "Mappa dell'Igiene",
+    'app.name': "Nitido",
     'app.tagline': 'Lo stato igienico di bar e ristoranti a Firenze, da segnalazioni verificate con foto.',
     'app.demo_banner': 'Demo con dati inventati: locali, persone e segnalazioni non sono reali.',
     'nav.map': 'Mappa',
@@ -204,7 +204,7 @@ export const core = {
     'notif.claim_rifiutata_motivo.body': '{venue}: {note}',
   },
   en: {
-    'app.name': 'Hygiene Map',
+    'app.name': 'Nitido',
     'app.tagline': 'The hygiene status of bars and restaurants in Florence, from photo-verified reports.',
     'app.demo_banner': 'Demo with invented data: venues, people and reports are not real.',
     'nav.map': 'Map',

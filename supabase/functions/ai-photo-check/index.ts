@@ -116,7 +116,7 @@ const OUTPUT_SCHEMA = {
   },
 } as const
 
-const SYSTEM_PROMPT = `Sei il filtro automatico di "Mappa dell'Igiene", un'app che raccoglie segnalazioni fotografiche
+const SYSTEM_PROMPT = `Sei il filtro automatico di "Nitido", un'app che raccoglie segnalazioni fotografiche
 di problemi igienici in bar e ristoranti di Firenze. Il tuo compito NON è giudicare il locale: è solo dire se la foto
 è una prova plausibile per la categoria dichiarata, così che un moderatore umano decida con più informazioni.
 

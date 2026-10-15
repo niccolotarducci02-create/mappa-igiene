@@ -1,6 +1,6 @@
 {
-  "name": "Mappa dell'Igiene",
-  "short_name": "Mappa Igiene",
+  "name": "Nitido",
+  "short_name": "Nitido",
   "description": "Stato igienico di bar e ristoranti a Firenze da segnalazioni verificate con foto.",
   "start_url": "./",
   "scope": "./",

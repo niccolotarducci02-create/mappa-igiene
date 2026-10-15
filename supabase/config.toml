@@ -35,7 +35,7 @@ enable_signup = true
 [auth.sms]
 enable_signup = true
 enable_confirmations = true
-template = "Il tuo codice Mappa dell'Igiene è {{ .Code }}"
+template = "Il tuo codice Nitido è {{ .Code }}"
 
 [auth.sms.test_otp]
 # Numeri di prova per lo sviluppo locale: telefono = codice fisso.

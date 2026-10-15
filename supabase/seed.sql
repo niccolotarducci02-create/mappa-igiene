@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Mappa dell'Igiene — seed.sql (SOLO sviluppo locale / beta di prova)
+-- Nitido — seed.sql (SOLO sviluppo locale / beta di prova)
 -- Dati dimostrativi: locali, persone, ditte e segnalazioni sono INVENTATI (nomi non reali,
 -- vie e coordinate di Firenze). Specchio di src/data/seed.ts con uuid fissi.
 --

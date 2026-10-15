@@ -11,7 +11,7 @@
  *   STRIPE_WEBHOOK_SECRET    firma del webhook Stripe (payments-webhook)
  *   TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM (numero o Messaging Service SID)  SMS (notify)
  *   RESEND_API_KEY, RESEND_FROM                                                        email (notify)
- *   APP_BASE_URL             URL pubblico della PWA, es. https://mappadelligiene.it (link nelle notifiche e in Stripe)
+ *   APP_BASE_URL             URL pubblico della PWA, es. https://nitido.example (link nelle notifiche e in Stripe)
  *   WEBHOOK_SECRET           segreto condiviso con i Database Webhook (header x-webhook-secret), opzionale
  *   CRON_SECRET              segreto condiviso con pg_cron (header x-cron-secret), opzionale
  *   NOTIFY_SMS_KINDS         tipi di notifica da inviare anche via SMS, separati da virgola (notify)

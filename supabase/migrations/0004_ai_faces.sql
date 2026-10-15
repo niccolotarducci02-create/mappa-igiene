@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Mappa dell'Igiene — 0004_ai_faces.sql
+-- Nitido — 0004_ai_faces.sql
 -- Colonne per l'esito "volti" del filtro automatico (Edge Function ai-photo-check).
 --
 -- Il modello restituisce, oltre al verdetto, i riquadri dei volti riconoscibili (frazioni 0..1

@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Mappa dell'Igiene — 0007_unblock_user.sql
+-- Nitido — 0007_unblock_user.sql
 -- Revoca del blocco (block_user è a senso unico in 0003): solo la moderazione, con audit.
 -- Controparte di DataStore.unblockUser (src/data/store.ts).
 -- =====================================================================================

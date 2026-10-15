@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Mappa dell'Igiene — scripts/cron_and_webhooks.sql
+-- Nitido — scripts/cron_and_webhooks.sql
 -- Collega il database alle Edge Functions: webhook (trigger + pg_net) e lavori periodici (pg_cron).
 --
 -- NON è una migrazione: va eseguito UNA volta nell'SQL Editor del progetto Supabase, DOPO

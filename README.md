@@ -1,4 +1,4 @@
-# Mappa dell'Igiene
+# Nitido
 
 App web (PWA) per Firenze: lo stato igienico di bar e ristoranti a partire da **segnalazioni verificate con foto** e dai
 **comunicati pubblici dei NAS**. Il locale risponde dentro l'app e, se risolve, lo dimostra con il certificato di una

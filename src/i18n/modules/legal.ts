@@ -234,10 +234,10 @@ export const legal = {
     /* terms */
     'terms.eyebrow': 'Legal document',
     'terms.title': 'Terms of use',
-    'terms.subtitle': 'What Hygiene Map is, what it publishes and under which conditions you use it.',
+    'terms.subtitle': 'What Nitido is, what it publishes and under which conditions you use it.',
     'terms.s1.title': 'Who we are and what we publish',
     'terms.s1.p1':
-      'Hygiene Map is a web service run by [Company name], based at [address], Florence (hereafter "we" or "the Service"). It shows bars, restaurants and other food businesses on a map of Florence and, for each one, hygiene reports sent by users and public notices by the NAS (the Carabinieri health protection unit).',
+      'Nitido is a web service run by [Company name], based at [address], Florence (hereafter "we" or "the Service"). It shows bars, restaurants and other food businesses on a map of Florence and, for each one, hygiene reports sent by users and public notices by the NAS (the Carabinieri health protection unit).',
     'terms.s1.p2':
       'We publish "user reports" together with photo evidence, the time and position of the shot, and the venue\'s reply. We never express our own judgement of a venue, give scores, compile rankings or keep any blacklist. The status shown on the map ("under review", "confirmed", "resolved") only describes the stage the report is at, not the quality of the business.',
     'terms.s1.p3': 'The four rules published on the page "The 4 rules" are an integral part of these Terms.',

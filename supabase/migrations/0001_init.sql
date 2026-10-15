@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Mappa dell'Igiene — 0001_init.sql
+-- Nitido — 0001_init.sql
 -- Schema Postgres: enum, tabelle, indici, funzioni di supporto e trigger che applicano
 -- le regole del piano (src/domain/rules.ts + src/domain/stateMachine.ts).
 --

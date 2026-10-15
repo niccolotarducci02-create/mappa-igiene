@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Mappa dell'Igiene — 0003_functions.sql
+-- Nitido — 0003_functions.sql
 -- Funzioni RPC (chiamate dal client con supabase.rpc('nome', { p_param: ... })) e Storage.
 --
 --  * Tutte le RPC sono SECURITY DEFINER con controlli espliciti su auth.uid() / ruolo:

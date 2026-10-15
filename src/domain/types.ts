@@ -1,5 +1,5 @@
 /**
- * Modello di dominio di Mappa dell'Igiene.
+ * Modello di dominio di Nitido.
  * Questo file è condiviso tra l'app web, lo store locale (demo) e le Edge Functions Supabase.
  * Nessuna dipendenza da React o dal browser.
  */

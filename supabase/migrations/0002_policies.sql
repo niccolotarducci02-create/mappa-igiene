@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Mappa dell'Igiene — 0002_policies.sql
+-- Nitido — 0002_policies.sql
 -- Row Level Security su OGNI tabella, viste pubbliche e privilegi per colonna.
 --
 -- Principi:

@@ -1,4 +1,4 @@
-# Mappa dell'Igiene — architettura e convenzioni
+# Nitido — architettura e convenzioni
 
 App web (PWA) per Firenze che mostra lo stato igienico di bar e ristoranti a partire da segnalazioni
 verificate con foto e dai comunicati pubblici dei NAS. I locali replicano in app e dimostrano la

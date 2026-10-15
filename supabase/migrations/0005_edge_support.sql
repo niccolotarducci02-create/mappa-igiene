@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Mappa dell'Igiene — 0005_edge_support.sql
+-- Nitido — 0005_edge_support.sql
 -- Colonne e funzioni di supporto alle Edge Functions (supabase/functions):
 --   * profiles.email                      per le notifiche via email (notify)
 --   * notifications.sent_at/sent_via/...  tracciamento della consegna SMS/email (notify)

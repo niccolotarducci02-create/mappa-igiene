@@ -364,7 +364,7 @@ test.describe('Flussi demo', () => {
     await toggle.click()
     await expect(page.getByRole('heading', { level: 1, name: 'How it works' })).toBeVisible()
     await expect(page.getByRole('tab', { name: 'Customers' })).toBeVisible()
-    await expect(page.getByRole('link', { name: 'Hygiene Map' })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Nitido' })).toBeVisible()
     await expect(toggle).toHaveText('IT')
     expect(await page.evaluate(() => document.documentElement.lang)).toBe('en')
     const english = await page.locator('body').innerText()

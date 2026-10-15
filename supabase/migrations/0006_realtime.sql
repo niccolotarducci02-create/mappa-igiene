@@ -1,5 +1,5 @@
 -- =====================================================================================
--- Mappa dell'Igiene — 0006_realtime.sql
+-- Nitido — 0006_realtime.sql
 -- Pubblicazione Realtime: il client (src/data/supabaseStore.ts, subscribe()) ascolta il canale
 -- `db-changes` con postgres_changes su schema `public` e ricarica le pagine quando una riga cambia.
 --
