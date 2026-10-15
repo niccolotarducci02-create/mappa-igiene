@@ -1,0 +1,13 @@
+{
+  "//": "Configurazione Deno condivisa dalle Edge Functions (supabase functions deploy la legge da questa cartella). Gli import npm: sono risolti dal runtime Supabase; le versioni sono fissate qui per avere build riproducibili.",
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["deno.window"]
+  },
+  "imports": {
+    "npm:@supabase/supabase-js@2": "npm:@supabase/supabase-js@2.117.3",
+    "npm:@anthropic-ai/sdk": "npm:@anthropic-ai/sdk"
+  },
+  "fmt": { "semiColons": false, "singleQuote": true, "lineWidth": 120 },
+  "lint": { "rules": { "tags": ["recommended"] } }
+}

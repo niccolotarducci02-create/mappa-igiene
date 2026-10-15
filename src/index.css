@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+/* Layout concept: a map-first phone app with a sticky header and a bottom tab bar;
+   content pages are single-column, 65ch max, with semantic status chips. */
+:root {
+  /* Palette: Florentine civic blue as brand accent; neutrals biased toward green (hygiene);
+     semantic status colors are separate from the accent. */
+  --bg: #f6f7f5;
+  --bg-elev: #ffffff;
+  --bg-muted: #eceee9;
+  --fg: #182026;
+  --fg-muted: #5b6670;
+  --line: #d6dad3;
+  --accent: #1f3a5f;
+  --accent-fg: #ffffff;
+  --accent-soft: #e3eaf4;
+
+  --st-none: #5f6c62;
+  --st-none-soft: #e8ece8;
+  --st-verifying: #8a5a12;
+  --st-verifying-soft: #fbefd6;
+  --st-confirmed: #b42318;
+  --st-confirmed-soft: #fbe2df;
+  --st-resolved: #1a6b43;
+  --st-resolved-soft: #dcf2e5;
+
+  --danger: #b42318;
+  --ok: #1a6b43;
+  --warn: #8a5a12;
+
+  --font-ui: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-data: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(24, 32, 38, .06), 0 6px 20px rgba(24, 32, 38, .08);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12171b;
+    --bg-elev: #1a2126;
+    --bg-muted: #222a30;
+    --fg: #e9edef;
+    --fg-muted: #9aa6ad;
+    --line: #2e383f;
+    --accent: #8fb3e6;
+    --accent-fg: #0f1a2a;
+    --accent-soft: #1f3147;
+    --st-none: #93a096;
+    --st-none-soft: #26302a;
+    --st-verifying: #e0a83a;
+    --st-verifying-soft: #3b2f14;
+    --st-confirmed: #f0776c;
+    --st-confirmed-soft: #45201c;
+    --st-resolved: #5ec48f;
+    --st-resolved-soft: #173627;
+    --danger: #f0776c;
+    --ok: #5ec48f;
+    --warn: #e0a83a;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12171b;
+  --bg-elev: #1a2126;
+  --bg-muted: #222a30;
+  --fg: #e9edef;
+  --fg-muted: #9aa6ad;
+  --line: #2e383f;
+  --accent: #8fb3e6;
+  --accent-fg: #0f1a2a;
+  --accent-soft: #1f3147;
+  --st-none: #93a096;
+  --st-none-soft: #26302a;
+  --st-verifying: #e0a83a;
+  --st-verifying-soft: #3b2f14;
+  --st-confirmed: #f0776c;
+  --st-confirmed-soft: #45201c;
+  --st-resolved: #5ec48f;
+  --st-resolved-soft: #173627;
+  --danger: #f0776c;
+  --ok: #5ec48f;
+  --warn: #e0a83a;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-elev: var(--bg-elev);
+  --color-muted: var(--bg-muted);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-st-none: var(--st-none);
+  --color-st-none-soft: var(--st-none-soft);
+  --color-st-verifying: var(--st-verifying);
+  --color-st-verifying-soft: var(--st-verifying-soft);
+  --color-st-confirmed: var(--st-confirmed);
+  --color-st-confirmed-soft: var(--st-confirmed-soft);
+  --color-st-resolved: var(--st-resolved);
+  --color-st-resolved-soft: var(--st-resolved-soft);
+  --color-danger: var(--danger);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --font-ui: var(--font-ui);
+  --font-data: var(--font-data);
+  --radius-app: var(--radius);
+  --shadow-app: var(--shadow);
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1, h2, h3 { text-wrap: balance; letter-spacing: -0.01em; }
+.tnum { font-variant-numeric: tabular-nums; }
+.eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: .72rem; color: var(--fg-muted); font-weight: 600; }
+.prose { max-width: 65ch; }
+.prose p + p { margin-top: .75em; }
+.prose h2 { font-size: 1.15rem; font-weight: 700; margin: 1.5em 0 .5em; }
+.prose h3 { font-size: 1rem; font-weight: 700; margin: 1.2em 0 .4em; }
+.prose ul, .prose ol { padding-left: 1.3em; margin: .5em 0; }
+.prose li + li { margin-top: .3em; }
+
+/* Side gutter: content areas use .gutter so colored bands can span the width. */
+.gutter {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Buttons & form controls */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 44px; padding: 0 1rem; border-radius: var(--radius);
+  font-weight: 600; font-size: .95rem; border: 1px solid transparent; cursor: pointer;
+  background: var(--bg-muted); color: var(--fg); text-decoration: none;
+  transition: filter .12s ease, transform .05s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+.btn-primary { background: var(--accent); color: var(--accent-fg); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-outline { background: transparent; border-color: var(--line); }
+.btn-danger { background: var(--st-confirmed-soft); color: var(--st-confirmed); }
+.btn-ok { background: var(--st-resolved-soft); color: var(--st-resolved); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-sm { min-height: 34px; padding: 0 .75rem; font-size: .85rem; }
+.btn-block { width: 100%; }
+
+.field { display: grid; gap: .35rem; }
+.field > label { font-size: .85rem; font-weight: 600; color: var(--fg-muted); }
+.input, .select, .textarea {
+  width: 100%; min-height: 44px; padding: .55rem .75rem; border-radius: var(--radius);
+  border: 1px solid var(--line); background: var(--bg-elev); color: var(--fg); font: inherit;
+}
+.textarea { min-height: 96px; resize: vertical; }
+
+.card { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); }
+.card-pad { padding: 1rem; }
+
+/* Status chips */
+.chip {
+  display: inline-flex; align-items: center; gap: .4rem; padding: .2rem .6rem; border-radius: 999px;
+  font-size: .78rem; font-weight: 600; white-space: nowrap; line-height: 1.3;
+}
+.chip::before { content: ""; width: .5rem; height: .5rem; border-radius: 999px; background: currentColor; flex: none; }
+.chip-nessuna { background: var(--st-none-soft); color: var(--st-none); }
+.chip-in_verifica { background: var(--st-verifying-soft); color: var(--st-verifying); }
+.chip-confermata { background: var(--st-confirmed-soft); color: var(--st-confirmed); }
+.chip-risolta { background: var(--st-resolved-soft); color: var(--st-resolved); }
+.chip-neutral::before { display: none; }
+
+/* Map pins (Leaflet divIcon) */
+.pin { width: 26px; height: 26px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid var(--bg-elev); box-shadow: 0 1px 4px rgba(0,0,0,.35); }
+.pin::after { content: ""; position: absolute; inset: 7px; border-radius: 50%; background: var(--bg-elev); opacity: .9; }
+.pin-nessuna { background: var(--st-none); }
+.pin-in_verifica { background: var(--st-verifying); }
+.pin-confermata { background: var(--st-confirmed); }
+.pin-risolta { background: var(--st-resolved); }
+.pin-premium::after { background: #f2c94c; }
+.leaflet-container { background: var(--bg-muted); font-family: var(--font-ui); }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--bg-elev); color: var(--fg); box-shadow: var(--shadow); }
+.leaflet-popup-content { margin: .75rem .9rem; font-size: .9rem; }
+.leaflet-control-zoom a { background: var(--bg-elev) !important; color: var(--fg) !important; border-color: var(--line) !important; }
+.leaflet-bar { border-color: var(--line) !important; }
+.leaflet-control-attribution { background: color-mix(in srgb, var(--bg-elev) 85%, transparent) !important; color: var(--fg-muted) !important; font-size: 10px !important; }
+.leaflet-control-attribution a { color: var(--accent) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

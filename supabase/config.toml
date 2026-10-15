@@ -1,0 +1,92 @@
+# Configurazione minima della CLI Supabase per lo sviluppo locale.
+# Avvio: `supabase start` (applica supabase/migrations/*.sql e poi supabase/seed.sql).
+project_id = "mappa-igiene"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173", "http://127.0.0.1:5173"]
+jwt_expiry = 3600
+enable_refresh_token_rotation = true
+enable_signup = true
+
+# Accesso con OTP via SMS (regola 2: utente verificato con numero di telefono).
+# In locale i codici finiscono nei log di Inbucket / nel terminale; in produzione serve un provider (Twilio, MessageBird...).
+[auth.sms]
+enable_signup = true
+enable_confirmations = true
+template = "Il tuo codice Mappa dell'Igiene è {{ .Code }}"
+
+[auth.sms.test_otp]
+# Numeri di prova per lo sviluppo locale: telefono = codice fisso.
+# ATTENZIONE: sono i numeri degli utenti del seed (cliente, titolare...). Valgono solo per `supabase start`:
+# NON eseguire `supabase config push` verso il progetto ospitato senza prima togliere questa sezione, altrimenti
+# chiunque potrebbe entrare in produzione con questi numeri e il codice 123456.
+"+393330000001" = "123456"
+"+393330000002" = "123456"
+
+[storage]
+enabled = true
+file_size_limit = "10MiB"
+
+# I bucket sono creati anche da 0003_functions.sql (idempotente): qui servono alla CLI locale.
+[storage.buckets.report-photos]
+public = false
+file_size_limit = "8MiB"
+allowed_mime_types = ["image/jpeg", "image/png", "image/webp"]
+
+[storage.buckets.certificates]
+public = false
+file_size_limit = "10MiB"
+allowed_mime_types = ["application/pdf", "image/jpeg", "image/png", "image/webp"]
+
+[edge_runtime]
+enabled = true
+policy = "oneshot"
+
+[analytics]
+enabled = false
+
+# -------------------------------------------------------------------------------------
+# Edge Functions (supabase/functions). verify_jwt = false dove il chiamante non è un utente
+# (Stripe, pg_cron, webhook del database): queste funzioni verificano da sole il chiamante
+# (chiave service_role, segreto condiviso o JWT dell'utente) in _shared/auth.ts.
+# Gli import relativi a ../../../src/domain/*.ts sono inclusi nel bundle dal deploy.
+# -------------------------------------------------------------------------------------
+[functions.ai-photo-check]
+verify_jwt = false          # service_role (webhook) oppure moderatore: controllo interno
+
+[functions.on-report-submitted]
+verify_jwt = false          # Database Webhook con Authorization: Bearer <service_role> o x-webhook-secret
+
+[functions.reply-deadline-cron]
+verify_jwt = false          # pg_cron + pg_net con Authorization: Bearer <service_role> o x-cron-secret
+
+[functions.payments-webhook]
+verify_jwt = false          # Stripe: la sicurezza è la firma Stripe-Signature
+
+[functions.notify]
+verify_jwt = false          # Database Webhook / pg_cron
+
+[functions.create-checkout-session]
+verify_jwt = true           # chiamata dalla PWA con il JWT dell'utente
